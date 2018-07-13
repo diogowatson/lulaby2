@@ -1,0 +1,82 @@
+﻿@model web_api_version01.Models.Application
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Application</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAplied)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAplied)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateProcessed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateProcessed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditApplied)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditApplied)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditAproved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditAproved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recomendation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recomendation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aproved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aproved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<web_api_version01.Models.Application>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Company)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAplied)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateProcessed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditApplied)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditAproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recomendation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Score)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAplied)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateProcessed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditApplied)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditAproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recomendation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Score)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model web_api_version01.Models.DnbData
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DnbData</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FailureScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FailureScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DelinquencyScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelinquencyScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paydex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paydex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ViabilityRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ViabilityRating)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
