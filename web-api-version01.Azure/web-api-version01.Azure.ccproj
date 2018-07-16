@@ -12,6 +12,7 @@
     <AssemblyName>web_api_version01.Azure</AssemblyName>
     <StartDevelopmentStorage>True</StartDevelopmentStorage>
     <Name>web-api-version01.Azure</Name>
+    <UseWebProjectPorts>True</UseWebProjectPorts>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
