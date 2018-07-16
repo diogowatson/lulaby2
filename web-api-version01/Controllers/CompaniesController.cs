@@ -16,9 +16,11 @@ namespace web_api_version01.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Companies
+        // GET: api/Companies\
+        
         public IQueryable<Company> GetCompanies()
         {
+
             return db.Companies;
         }
 

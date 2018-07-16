@@ -17,5 +17,7 @@ namespace web_api_version01.Models
         public Boolean Aproved { set; get; }
         public int Score { get; set; }
 
+
+
     }
 }
