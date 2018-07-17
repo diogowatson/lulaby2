@@ -17,18 +17,17 @@ namespace web_api_version01.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         //GET Equifax Score of the company
-        //[Route("api/Companies/EquifaxScore/{name}")]
-        //public IHttpActionResult GetEquifaxScore(string name)
+        [Route("api/Companies/EquifaxScore/{name})]
+        public IHttpActionResult GetEquifaxScore(string name)
 
-        //{
-        //    var company = db.Companies.Where(e=> e.Name.Contains(name)).;
-        //    if (company == null)
-        //    {
-        //        return NotFound();
-        //    }
-            
-        //    return Ok(company.EquifaxScore);
-        //}
+        {
+            var company = db.Companies.Find(name);
+            if (company == null)
+            {
+                return NotFound();
+            }
+            return Ok(company.EquifaxScore);
+        }
 
         // GET: api/Companies\
 
