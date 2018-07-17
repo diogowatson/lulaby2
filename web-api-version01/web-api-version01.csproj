@@ -79,6 +79,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
@@ -87,6 +90,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.6\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -103,20 +112,11 @@
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -226,6 +226,7 @@
     <Compile Include="Controllers\EquifaxDatas1Controller.cs" />
     <Compile Include="Controllers\EquifaxDatasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -246,6 +247,14 @@
     <Compile Include="Migrations\201807132038131_InitialModel3.Designer.cs">
       <DependentUpon>201807132038131_InitialModel3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807171401276_SecondModel.cs" />
+    <Compile Include="Migrations\201807171401276_SecondModel.Designer.cs">
+      <DependentUpon>201807171401276_SecondModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807171812325_ThirdModel.cs" />
+    <Compile Include="Migrations\201807171812325_ThirdModel.Designer.cs">
+      <DependentUpon>201807171812325_ThirdModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -253,7 +262,6 @@
     <Compile Include="Models\CreditTransaction.cs" />
     <Compile Include="Models\DnbData.cs" />
     <Compile Include="Models\EquifaxData.cs" />
-    <Compile Include="Models\ProjectInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -313,11 +321,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Companies1\Create.cshtml" />
-    <Content Include="Views\Companies1\Delete.cshtml" />
-    <Content Include="Views\Companies1\Details.cshtml" />
-    <Content Include="Views\Companies1\Edit.cshtml" />
-    <Content Include="Views\Companies1\Index.cshtml" />
     <Content Include="Views\Applications1\Create.cshtml" />
     <Content Include="Views\Applications1\Delete.cshtml" />
     <Content Include="Views\Applications1\Details.cshtml" />
@@ -338,9 +341,15 @@
     <Content Include="Views\EquifaxDatas1\Details.cshtml" />
     <Content Include="Views\EquifaxDatas1\Edit.cshtml" />
     <Content Include="Views\EquifaxDatas1\Index.cshtml" />
+    <Content Include="Views\Companies1\Create.cshtml" />
+    <Content Include="Views\Companies1\Delete.cshtml" />
+    <Content Include="Views\Companies1\Details.cshtml" />
+    <Content Include="Views\Companies1\Edit.cshtml" />
+    <Content Include="Views\Companies1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -386,6 +395,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807132038131_InitialModel3.resx">
       <DependentUpon>201807132038131_InitialModel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807171401276_SecondModel.resx">
+      <DependentUpon>201807171401276_SecondModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807171812325_ThirdModel.resx">
+      <DependentUpon>201807171812325_ThirdModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

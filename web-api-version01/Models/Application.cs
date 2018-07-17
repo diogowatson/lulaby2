@@ -18,6 +18,5 @@ namespace web_api_version01.Models
         public int Score { get; set; }
 
 
-
     }
 }

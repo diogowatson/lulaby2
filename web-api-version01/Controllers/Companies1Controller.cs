@@ -46,7 +46,7 @@ namespace web_api_version01.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Address,ParentCompany,CreditIssued,Terms")] Company company)
+        public ActionResult Create([Bind(Include = "ID,Name,Address,ParentCompany,CreditIssued,EquifaxScore,DbnScore,Terms")] Company company)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace web_api_version01.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Address,ParentCompany,CreditIssued,Terms")] Company company)
+        public ActionResult Edit([Bind(Include = "ID,Name,Address,ParentCompany,CreditIssued,EquifaxScore,DbnScore,Terms")] Company company)
         {
             if (ModelState.IsValid)
             {

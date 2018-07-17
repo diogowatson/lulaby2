@@ -15,6 +15,13 @@ namespace web_api_version01.Models
         public string Address { get; set; }
         public string ParentCompany { get; set; }//must be optional
         public int CreditIssued { get; set; }
+        public string Industry { get; set; }
+        public virtual ICollection<EquifaxData> EquifaxDatas { get; set; }//added 2018-07-17
+        public virtual ICollection<DnbData> DnbDatas { get; set; }//added 2018-07-17
+        public float EquifaxScore { get; set; }//added 2018-07-17
+        public float DbnScore { get; set; }//added 2018-07-17
         public string Terms { get; set; }
+
+
     }
 }

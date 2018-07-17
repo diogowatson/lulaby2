@@ -19,6 +19,7 @@ namespace web_api_version01.Models
         public DbSet<DnbData> DnbDatas { get; set; }
         public DbSet<EquifaxData> EquifaxDatas{get;set;}
 
+       
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
