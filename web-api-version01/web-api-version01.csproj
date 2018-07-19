@@ -255,6 +255,18 @@
     <Compile Include="Migrations\201807171812325_ThirdModel.Designer.cs">
       <DependentUpon>201807171812325_ThirdModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807181502282_FourthMigration.cs" />
+    <Compile Include="Migrations\201807181502282_FourthMigration.Designer.cs">
+      <DependentUpon>201807181502282_FourthMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807181505009_FourthMigration1.cs" />
+    <Compile Include="Migrations\201807181505009_FourthMigration1.Designer.cs">
+      <DependentUpon>201807181505009_FourthMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807181735290_FourthMigration2.cs" />
+    <Compile Include="Migrations\201807181735290_FourthMigration2.Designer.cs">
+      <DependentUpon>201807181735290_FourthMigration2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -401,6 +413,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807171812325_ThirdModel.resx">
       <DependentUpon>201807171812325_ThirdModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807181502282_FourthMigration.resx">
+      <DependentUpon>201807181502282_FourthMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807181505009_FourthMigration1.resx">
+      <DependentUpon>201807181505009_FourthMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807181735290_FourthMigration2.resx">
+      <DependentUpon>201807181735290_FourthMigration2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

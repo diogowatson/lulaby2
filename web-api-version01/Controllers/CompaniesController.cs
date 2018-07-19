@@ -16,19 +16,44 @@ namespace web_api_version01.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        //GET Equifax Score of the company
-        [Route("api/Companies/EquifaxScore/{name})]
+        
+
+        //  GET Equifax Score of reciving the company name as parameter
+        [Route("api/Companies/EquifaxScore/{name}")]
         public IHttpActionResult GetEquifaxScore(string name)
 
         {
-            var company = db.Companies.Find(name);
+            var company = (from c in db.Companies
+                           join df in db.EquifaxDatas on c.ID equals df.ID
+                           where  df.Company == name
+                           select df.CreditIndex);
             if (company == null)
             {
                 return NotFound();
             }
-            return Ok(company.EquifaxScore);
+            return Ok(company);
         }
+        //TODO
+        //  GET Dnb Score Score of reciving the company name as parameter
+        [Route("api/Companies/DbnScore/{name}")]
+        public IHttpActionResult GetDbnScore(string name)
 
+        {
+            
+            var company = (from c in db.Companies
+                           join df in db.DnbDatas on c.ID equals df.ID
+                           where df.Company == name
+                           select new ResultsCustom
+                           {            
+                                average = (new double?[] { df.FailureScore,df.DelinquencyScore,df.Paydex/10, df.ViabilityRating}).Average()
+                            });
+            
+            if (company == null)
+            {
+                return NotFound();
+            }
+            return Ok(company);
+        }
         // GET: api/Companies\
 
         public IQueryable<Company> GetCompanies()
@@ -130,4 +155,5 @@ namespace web_api_version01.Controllers
             return db.Companies.Count(e => e.ID == id) > 0;
         }
     }
+    class ResultsCustom { internal double? average; double averange; }
 }

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using web_api_version01.Models;
+using System.Net.Mail;//libary to send email from the server
 
 namespace web_api_version01.Controllers
 {
@@ -25,42 +26,78 @@ namespace web_api_version01.Controllers
             return db.Applications;
         }
 
+        //GET all companies pending aproval
+        [Route("api/Applications/ProcessStatus/Pending")]
+        public IHttpActionResult GetApproval()
+        {
+            var result = (from a in db.Applications
+                          where a.ProcessStatus == false
+                          select a
+                          );
+            if(result==null)
+            {
+                return Ok("None application spendding aproval");
+            }
+            return Ok(result);
+        }
+        //get all credit peddding aproval
+        [Route("api/Applications/AllCreditPendingApproval")]
+        public IHttpActionResult GetAllCreditApproval()
+        {
+            var result = (from a in db.Applications
+                          where a.ProcessStatus == false
+                          select a
+                          );
+            if (result == null)
+            {
+                return Ok("None application spendding aproval");
+            }
+            return Ok(result);
+        }
+
         // GET: api/Applications/score
         [Route("api/Applications/score")]
-        public float GetScore()
+        public IHttpActionResult GetScore()
         {
             float sumProd = db.Applications.Sum(a => a.Score * a.CreditAproved);
             float sumCreditApproved = db.Applications.Sum(a => a.CreditAproved);
-            return sumProd / sumCreditApproved;
+            float result = sumProd / sumCreditApproved;
+            return Ok(result);
         }
 
         // GET: api/Applications/newappcount
         [Route("api/Applications/newappcount")]
-        public int GetNewAppCount()
+        public IHttpActionResult GetNewAppCount()
         {
-            int appCount = db.Applications.Where(a => a.DateProcessed.Year > 2018).Count();
-            return appCount;
+            int appCount = db.Applications.Where(a => a.ProcessStatus == false).Count();
+           
+            return Ok(appCount);
         }
 
         // GET: api/Applications/newappcredit
         [Route("api/Applications/newappcredit")]
-        public int GetNewAppCredit()
+        public IHttpActionResult GetNewAppCredit()
         {
-            int appCredit = db.Applications.Where(a => a.DateProcessed.Year > 2018).Sum(a => a.CreditAproved);
-            return appCredit;
+            int appCredit = db.Applications.Where(a => a.ProcessStatus==false).Sum(a => a.CreditAproved);
+            
+            return Ok(appCredit);
         }
 
         // GET: api/Applications/newapplications
         [Route("api/Applications/newapplications")]
-        public IQueryable<Application> GetNewApplications()
+        public IHttpActionResult GetNewApplications()
         {
-            var newAppQuery = db.Applications.Where(a => a.DateProcessed.Year > 2018);
-            return newAppQuery;
+            var newAppQuery = db.Applications.Where(a => a.ProcessStatus==false);
+            if (newAppQuery == null)
+            {
+                return NotFound();
+            }
+            return Ok(newAppQuery);
         }
 
         // GET: api/Applications/creditriskdist
         [Route("api/Applications/creditriskdist")]
-        public IQueryable<CreditRiskDist> GetCreditRiskDist()
+        public IHttpActionResult GetCreditRiskDist()
         {
             var creditRiskDist = db.Applications.Where(a => a.DateProcessed.Year <= 2018)
                                                 .GroupBy(a => a.Score, a => a.CreditAproved)
@@ -69,7 +106,7 @@ namespace web_api_version01.Controllers
                                                     score = g.Key,
                                                     credit = g.ToList().Sum()
                                                 });
-            return creditRiskDist;
+            return Ok(creditRiskDist);
         }
 
         // GET: api/Applications/creditindustrydist
@@ -149,7 +186,13 @@ namespace web_api_version01.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = application.ID }, application);
         }
-
+        // POST to send email
+        [Route("api/SendEmail/{email}")]
+        public string PostSendEmail(string email)
+        {
+            return email;
+            
+        }
         // DELETE: api/Applications/5
         [ResponseType(typeof(Application))]
         public IHttpActionResult DeleteApplication(int id)
@@ -170,7 +213,7 @@ namespace web_api_version01.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                db.Dispose(); 
             }
             base.Dispose(disposing);
         }

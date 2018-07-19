@@ -24,10 +24,13 @@
             @Html.DisplayNameFor(model => model.CreditIssued)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EquifaxScore)
+            @Html.DisplayNameFor(model => model.Industry)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DbnScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Terms)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Terms)
@@ -50,7 +53,7 @@
             @Html.DisplayFor(modelItem => item.CreditIssued)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EquifaxScore)
+            @Html.DisplayFor(modelItem => item.Industry)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DbnScore)
@@ -62,6 +65,8 @@
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+
+           
         </td>
     </tr>
 }

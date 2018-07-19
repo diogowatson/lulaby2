@@ -14,9 +14,9 @@ namespace web_api_version01.Models
         public int CreditApplied { get; set; }
         public int CreditAproved { get; set; }
         public string Recomendation { get; set; }
-        public Boolean Aproved { set; get; }
+        public short Aproved { set; get; }
         public int Score { get; set; }
-
+        public Boolean ProcessStatus { get; set; } //if an aplication is already processed True - added in 2018-07-18
 
     }
 }
