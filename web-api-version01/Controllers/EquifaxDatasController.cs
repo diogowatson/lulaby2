@@ -22,6 +22,22 @@ namespace web_api_version01.Controllers
             return db.EquifaxDatas;
         }
 
+
+        //GET api/EquifaxDatas/Company/{name}
+        [Route("api/EquifaxDatas/Company/{name}")]
+        public IHttpActionResult GetEquifaxdatasByname(string name)
+        {
+            var dnbData = from d in db.EquifaxDatas
+                          where d.Company.Equals(name)
+                          select d;
+            
+            if (dnbData == null)
+            {
+                return NotFound();
+            }
+            return Ok(dnbData);
+        }
+
         // GET: api/EquifaxDatas/5
         [ResponseType(typeof(EquifaxData))]
         public IHttpActionResult GetEquifaxData(int id)

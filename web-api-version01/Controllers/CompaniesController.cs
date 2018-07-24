@@ -23,10 +23,10 @@ namespace web_api_version01.Controllers
         public IHttpActionResult GetEquifaxScore(string name)
 
         {
-            var company = (from c in db.Companies
-                           join df in db.EquifaxDatas on c.ID equals df.ID
-                           where  df.Company == name
-                           select df.CreditIndex);
+            var company = (from c in db.EquifaxDatas
+                           where  c.Company.Equals(name)
+                           select c
+                           );
             if (company == null)
             {
                 return NotFound();
@@ -39,15 +39,11 @@ namespace web_api_version01.Controllers
         public IHttpActionResult GetDbnScore(string name)
 
         {
-            
-            var company = (from c in db.Companies
-                           join df in db.DnbDatas on c.ID equals df.ID
-                           where df.Company == name
-                           select new ResultsCustom
-                           {            
-                                average = (new double?[] { df.FailureScore,df.DelinquencyScore,df.Paydex/10, df.ViabilityRating}).Average()
-                            });
-            
+
+            var company = (from c in db.DnbDatas
+                           where c.Company.Equals(name)
+                           select c
+                          );
             if (company == null)
             {
                 return NotFound();

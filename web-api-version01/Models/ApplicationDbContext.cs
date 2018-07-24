@@ -18,8 +18,9 @@ namespace web_api_version01.Models
         public DbSet<CreditTransaction> CreditTransactions { get; set; }
         public DbSet<DnbData> DnbDatas { get; set; }
         public DbSet<EquifaxData> EquifaxDatas{get;set;}
+        public DbSet<ApplicationReceived> applicationReceiveds { get; set; }//added in 2018-07-20
+        public DbSet<TradeReference> tradeReferences { get; set; }//added in 2018-07-20
 
-       
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

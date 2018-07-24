@@ -22,8 +22,25 @@ namespace web_api_version01.Controllers
             return db.DnbDatas;
         }
 
-        // GET: api/DnbDatas/5
-        [ResponseType(typeof(DnbData))]
+        //GET api/DnbData/Company/{name}
+        [Route("api/Dnb/Company/{name}")]
+        public IHttpActionResult GetDnbDatasByname(string name)
+        {
+
+
+            var dnbData = from d in db.DnbDatas
+                               where d.Company.Equals(name)
+                               select d;
+                        
+
+            if (dnbData == null)
+            {
+                return NotFound();
+            }
+            return Ok(dnbData);
+        }
+    // GET: api/DnbDatas/5
+    [ResponseType(typeof(DnbData))]
         public IHttpActionResult GetDnbData(int id)
         {
             DnbData dnbData = db.DnbDatas.Find(id);

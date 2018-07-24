@@ -82,8 +82,15 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Mail, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Mail.1.0.0-rtm-00002\lib\net451\System.Net.Mail.dll</HintPath>
+      <Aliases>NetMail</Aliases>
+    </Reference>
     <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.6\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -92,6 +99,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.6\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.6\lib\net45\System.Web.Http.WebHost.dll</HintPath>
@@ -227,6 +237,7 @@
     <Compile Include="Controllers\EquifaxDatasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TradeReferencesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -267,13 +278,39 @@
     <Compile Include="Migrations\201807181735290_FourthMigration2.Designer.cs">
       <DependentUpon>201807181735290_FourthMigration2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807191913150_FifhtMigration.cs" />
+    <Compile Include="Migrations\201807191913150_FifhtMigration.Designer.cs">
+      <DependentUpon>201807191913150_FifhtMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201439259_FifthMigration.cs" />
+    <Compile Include="Migrations\201807201439259_FifthMigration.Designer.cs">
+      <DependentUpon>201807201439259_FifthMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201513150_FifthMigration1.cs" />
+    <Compile Include="Migrations\201807201513150_FifthMigration1.Designer.cs">
+      <DependentUpon>201807201513150_FifthMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201756543_FifthMigration2.cs" />
+    <Compile Include="Migrations\201807201756543_FifthMigration2.Designer.cs">
+      <DependentUpon>201807201756543_FifthMigration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807202015569_SixthMigration.cs" />
+    <Compile Include="Migrations\201807202015569_SixthMigration.Designer.cs">
+      <DependentUpon>201807202015569_SixthMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807202042597_SixthMigration1.cs" />
+    <Compile Include="Migrations\201807202042597_SixthMigration1.Designer.cs">
+      <DependentUpon>201807202042597_SixthMigration1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ApplicationReceived.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CreditTransaction.cs" />
     <Compile Include="Models\DnbData.cs" />
     <Compile Include="Models\EquifaxData.cs" />
+    <Compile Include="Models\TradeReference.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -285,6 +322,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Resources\emailBody.html" />
+    <Content Include="Resources\emailBody2.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -319,7 +358,9 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -423,6 +464,30 @@
     <EmbeddedResource Include="Migrations\201807181735290_FourthMigration2.resx">
       <DependentUpon>201807181735290_FourthMigration2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191913150_FifhtMigration.resx">
+      <DependentUpon>201807191913150_FifhtMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201439259_FifthMigration.resx">
+      <DependentUpon>201807201439259_FifthMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201513150_FifthMigration1.resx">
+      <DependentUpon>201807201513150_FifthMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201756543_FifthMigration2.resx">
+      <DependentUpon>201807201756543_FifthMigration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807202015569_SixthMigration.resx">
+      <DependentUpon>201807202015569_SixthMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807202042597_SixthMigration1.resx">
+      <DependentUpon>201807202042597_SixthMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\emailApp\emailApp\emailApp.csproj">
+      <Project>{013f4085-f8df-490f-bf9a-7c322fe6cf29}</Project>
+      <Name>emailApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

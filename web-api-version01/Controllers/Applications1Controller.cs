@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using web_api_version01.Models;
 
+
 namespace web_api_version01.Controllers
 {
     public class Applications1Controller : Controller
@@ -38,6 +39,7 @@ namespace web_api_version01.Controllers
         // GET: Applications1/Create
         public ActionResult Create()
         {
+     
             return View();
         }
 
@@ -52,6 +54,9 @@ namespace web_api_version01.Controllers
             {
                 db.Applications.Add(application);
                 db.SaveChanges();
+                //send email
+               // string emailAddress = application.AplicantEmail;
+             //  EmailSender email = new EmailSender(emailAddress);
                 return RedirectToAction("Index");
             }
 
