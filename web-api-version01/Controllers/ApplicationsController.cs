@@ -265,8 +265,13 @@ namespace web_api_version01.Controllers
                 return BadRequest(ModelState);
             }
 
-            Sendmail m = new Sendmail(application.AplicantEmail, "Adastra Onbording");
-            m.SendWithHTMLBody();
+            //Sendmail m = new Sendmail(application.AplicantEmail, "Adastra Onbording");
+            //m.SendWithHTMLBody();
+           
+
+
+
+
             db.Applications.Add(application);
             db.SaveChanges();
             
